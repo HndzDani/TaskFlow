@@ -1,0 +1,998 @@
+﻿
+/* =====================================================
+   TASKFLOW - STYLES.CSS
+   Diseño minimalista | Slate / Blue Gray
+===================================================== */
+
+
+/* =====================================================
+   1. CONFIGURACIÓN GENERAL
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #F7F7F8;
+    color: #1F2937;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+.contenedor {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   2. SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    padding: 25px 16px;
+    border-right: 1px solid #E5E7EB;
+    flex-shrink: 0;
+}
+
+.logo {
+    margin-bottom: 36px;
+    padding-left: 12px;
+    color: #111827;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+    .menu a {
+        text-decoration: none;
+        color: #6B7280;
+        padding: 11px 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: 0.15s;
+    }
+
+        .menu a:hover {
+            background-color: #F1F2F4;
+            color: #111827;
+        }
+
+
+/* =====================================================
+   3. NAVEGACIÓN DINÁMICA
+===================================================== */
+
+.vista {
+    display: none;
+}
+
+.contenido:has(.vista:target) .vista:target {
+    display: block;
+}
+
+.contenido:not(:has(.vista:target)) #vista-panel {
+    display: block;
+}
+
+/* Resaltar sección activa */
+
+.contenedor:has(#vista-panel:target)
+.menu a[href="#vista-panel"],
+.contenedor:has(#vista-tareas:target)
+.menu a[href="#vista-tareas"],
+.contenedor:has(#vista-calendario:target)
+.menu a[href="#vista-calendario"],
+.contenedor:has(#vista-nueva-tarea:target)
+.menu a[href="#vista-tareas"] {
+    background-color: #F1F2F4;
+    color: #111827;
+    font-weight: 600;
+}
+
+/* Panel seleccionado al iniciar */
+
+.contenedor:not(:has(.vista:target))
+.menu a[href="#vista-panel"] {
+    background-color: #F1F2F4;
+    color: #111827;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   4. CONTENIDO PRINCIPAL
+===================================================== */
+
+.contenido {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+
+/* =====================================================
+   5. ENCABEZADOS
+===================================================== */
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+    .encabezado h1,
+    .titulo-formulario h1 {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #111827;
+    }
+
+    .encabezado p,
+    .titulo-formulario p {
+        color: #6B7280;
+        margin-top: 4px;
+        font-size: 15px;
+    }
+
+
+/* =====================================================
+   6. BOTÓN NUEVA TAREA
+===================================================== */
+
+.btn-nueva-tarea {
+    display: inline-block;
+    background-color: #111827;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.15s;
+}
+
+    .btn-nueva-tarea:hover {
+        background-color: #374151;
+    }
+
+
+/* =====================================================
+   7. ESTADÍSTICAS DEL PANEL
+===================================================== */
+
+.estadisticas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.tarjeta {
+    background-color: #FFFFFF;
+    padding: 22px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+}
+
+    .tarjeta h3 {
+        font-size: 14px;
+        color: #6B7280;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .tarjeta p {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #111827;
+    }
+
+
+/* =====================================================
+   8. BARRA DE PROGRESO
+===================================================== */
+
+.progreso {
+    background-color: #FFFFFF;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 26px;
+}
+
+.progreso-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .progreso-info h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .progreso-info p {
+        color: #6B7280;
+        font-size: 14px;
+    }
+
+.barra-progreso {
+    width: 100%;
+    height: 8px;
+    background-color: #ECEEF1;
+    border-radius: 20px;
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+.progreso-completado {
+    width: 0%;
+    height: 100%;
+    background-color: #344B68;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+
+/* =====================================================
+   9. PRÓXIMAS TAREAS
+===================================================== */
+
+.proximas-tareas h2 {
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.lista-tareas {
+    list-style: none;
+    background-color: #FFFFFF;
+    padding: 12px 20px;
+    margin: 0;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+}
+
+    .lista-tareas li {
+        list-style: none;
+        padding: 17px 4px;
+        border-bottom: 1px solid #E5E7EB;
+        color: #111827;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.3px;
+        line-height: 1.5;
+        transition: color 0.2s ease;
+    }
+
+        .lista-tareas li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-tareas li:hover {
+            color: #344B68;
+        }
+
+
+/* =====================================================
+   10. FILTROS DE TAREAS
+===================================================== */
+
+.filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+    .filtros button {
+        padding: 8px 16px;
+        border: 1px solid #E5E7EB;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        color: #4B5563;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.15s;
+    }
+
+        .filtros button:hover {
+            background-color: #F3F4F6;
+        }
+
+    .filtros .filtro-activo {
+        background-color: #111827;
+        border-color: #111827;
+        color: #FFFFFF;
+    }
+
+        .filtros .filtro-activo:hover {
+            background-color: #374151;
+        }
+
+
+/* =====================================================
+   11. LISTA DE TAREAS
+===================================================== */
+
+.lista-mis-tareas {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tarea {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) auto auto auto;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px;
+    border-bottom: 1px solid #F0F1F3;
+}
+
+    .tarea:last-child {
+        border-bottom: none;
+    }
+
+/* Información de la tarea */
+
+.tarea-info {
+    min-width: 0;
+}
+
+    .tarea-info h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 4px;
+    }
+
+    .tarea-info p {
+        color: #6B7280;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .tarea-info span {
+        color: #9CA3AF;
+        font-size: 13px;
+    }
+
+
+/* =====================================================
+   12. PRIORIDADES DE LAS TAREAS
+===================================================== */
+
+.prioridad {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+}
+
+    .prioridad.alta {
+        background-color: #111827;
+        color: #FFFFFF;
+    }
+
+    .prioridad.media {
+        background-color: #344B68;
+        color: #FFFFFF;
+    }
+
+    .prioridad.baja {
+        background-color: #F7F7F8;
+        color: #344B68;
+        border: 1px solid #E5E7EB;
+    }
+
+
+/* =====================================================
+   13. BOTONES DE ESTADO
+===================================================== */
+
+.estado-tarea {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background-color: #F0F1F3;
+    padding: 4px;
+    border-radius: 9px;
+    white-space: nowrap;
+}
+
+    .estado-tarea button {
+        border: none;
+        background: transparent;
+        padding: 7px 12px;
+        border-radius: 6px;
+        color: #6B7280;
+        cursor: pointer;
+        white-space: nowrap;
+        font-size: 13px;
+        transition: 0.15s;
+    }
+
+        .estado-tarea button:hover {
+            color: #111827;
+        }
+
+        .estado-tarea button.seleccionado {
+            background-color: #FFFFFF;
+            color: #111827;
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+        }
+
+
+/* =====================================================
+   14. ACCIONES: EDITAR Y ELIMINAR
+===================================================== */
+
+.acciones-tarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-editar {
+    background-color: #FFFFFF;
+    color: #374151;
+    border: 1px solid #E0E3E8;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+    .btn-editar:hover {
+        background-color: #F3F4F6;
+        border-color: #D1D5DB;
+    }
+
+.btn-eliminar {
+    background-color: #FFFFFF;
+    color: #6B7280;
+    border: 1px solid #E0E3E8;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+    .btn-eliminar:hover {
+        background-color: #F1F2F4;
+        color: #344B68;
+        border-color: #CBD5E1;
+    }
+
+
+/* =====================================================
+   15. CALENDARIO
+===================================================== */
+
+.calendario {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+/* Navegación del calendario */
+
+.navegacion-calendario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+    .navegacion-calendario h2 {
+        font-size: 22px;
+        color: #263449;
+        text-transform: capitalize;
+    }
+
+    .navegacion-calendario button {
+        background-color: #F1F3F6;
+        color: #344B68;
+        border: none;
+        border-radius: 8px;
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .navegacion-calendario button:hover {
+            background-color: #344B68;
+            color: #FFFFFF;
+        }
+
+/* Días de la semana */
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    margin-bottom: 6px;
+}
+
+    .dias-semana span {
+        text-align: center;
+        padding: 5px;
+        color: #9CA3AF;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+/* Cuadrícula */
+
+.dias-mes {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+}
+
+/* Días */
+
+.dia {
+    height: 86px;
+    min-height: 0;
+    padding: 6px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9EF;
+    border-radius: 10px;
+    color: #344B68;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+    .dia:not(.vacio):hover {
+        border-color: #344B68;
+        background-color: #F5F7FA;
+    }
+
+    .dia.vacio {
+        background-color: transparent;
+        border: none;
+    }
+
+/* Día actual */
+
+.dia-hoy {
+    border: 2px solid #344B68;
+    font-weight: bold;
+}
+
+/* Eventos */
+
+.evento {
+    display: block;
+    margin-top: 3px;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    .evento.alta {
+        background-color: #E8EDF3;
+        color: #344B68;
+        border-left: 3px solid #344B68;
+    }
+
+    .evento.media {
+        background-color: #EEF1F5;
+        color: #475569;
+        border-left: 3px solid #64748B;
+    }
+
+    .evento.baja {
+        background-color: #F1F3F6;
+        color: #64748B;
+        border-left: 3px solid #94A3B8;
+    }
+
+
+/* =====================================================
+   16. FORMULARIO DE TAREAS
+===================================================== */
+
+.volver {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #6B7280;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+    .volver:hover {
+        color: #111827;
+    }
+
+.titulo-formulario {
+    margin-bottom: 20px;
+}
+
+.formulario-tarea {
+    background-color: #FFFFFF;
+    padding: 26px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+}
+
+/* Campos */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+    .campo label {
+        font-weight: 500;
+        font-size: 14px;
+        color: #374151;
+    }
+
+    .campo input[type="text"],
+    .campo input[type="date"],
+    .campo textarea,
+    .campo select {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #D1D5DB;
+        background-color: #FFFFFF;
+        color: #111827;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .campo input:focus,
+        .campo textarea:focus,
+        .campo select:focus {
+            outline: none;
+            border-color: #344B68;
+            box-shadow: 0 0 0 3px rgba(52, 75, 104, 0.10);
+        }
+
+    .campo textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+
+/* =====================================================
+   17. OPCIONES DE PRIORIDAD DEL FORMULARIO
+===================================================== */
+
+.opciones-prioridad {
+    display: flex;
+    gap: 10px;
+}
+
+    .opciones-prioridad label {
+        flex: 1;
+        cursor: pointer;
+    }
+
+    .opciones-prioridad input {
+        display: none;
+    }
+
+    .opciones-prioridad span {
+        display: block;
+        text-align: center;
+        padding: 11px;
+        border: 1px solid #D1D5DB;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #4B5563;
+        transition: 0.15s;
+    }
+
+    .opciones-prioridad input:checked + span {
+        background-color: #E8EDF3;
+        border-color: #344B68;
+        color: #344B68;
+        font-weight: 600;
+    }
+
+
+/* =====================================================
+   18. ESTADO Y FECHA
+===================================================== */
+
+.campos-dobles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* =====================================================
+   19. MENSAJES DE VALIDACIÓN
+===================================================== */
+
+.errores-validacion {
+    color: #DC2626;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+    .errores-validacion:empty {
+        display: none;
+    }
+
+    .errores-validacion ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .errores-validacion li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 5px;
+    }
+
+        .errores-validacion li::before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FEE2E2;
+            color: #DC2626;
+            font-size: 10px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 14px;
+        }
+
+    .errores-validacion p {
+        margin: 0;
+    }
+
+
+/* =====================================================
+   20. BOTONES DEL FORMULARIO
+===================================================== */
+
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #F0F1F3;
+    padding-top: 20px;
+}
+
+    .acciones-formulario button,
+    .acciones-formulario a {
+        padding: 11px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+.btn-cancelar {
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    color: #4B5563;
+}
+
+.btn-crear {
+    background-color: #111827;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+    .btn-crear:hover {
+        background-color: #374151;
+    }
+
+
+/* =====================================================
+   21. CLASE DESTACADO
+===================================================== */
+
+.destacado {
+    color: #111827;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+/* =====================================================
+   22. RESPONSIVE: TABLETS
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .tarea {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 15px;
+    }
+
+    .tarea-info {
+        grid-column: 1 / -1;
+    }
+
+    .estado-tarea {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+    }
+
+    .acciones-tarea {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 190px;
+    }
+}
+
+
+/* =====================================================
+   23. RESPONSIVE: MÓVILES
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .contenedor {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .contenido {
+        padding: 18px;
+    }
+
+    .estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .campos-dobles {
+        grid-template-columns: 1fr;
+    }
+
+    .progreso-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .dias-mes {
+        gap: 4px;
+    }
+
+    .dia {
+        height: 75px;
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .evento {
+        font-size: 9px;
+        padding: 2px 3px;
+    }
+
+    .dias-semana span {
+        padding: 8px 2px;
+    }
+
+    .lista-tareas {
+        padding: 10px 14px;
+    }
+
+        .lista-tareas li {
+            font-size: 15px;
+            padding: 16px 4px;
+        }
+
+    .errores-validacion {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   24. RESPONSIVE: MÓVILES PEQUEÑOS
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .tarea {
+        grid-template-columns: 1fr;
+    }
+
+    .tarea-info {
+        grid-column: 1;
+    }
+
+    .estado-tarea {
+        grid-column: 1;
+        justify-content: space-between;
+    }
+
+    .acciones-tarea {
+        justify-content: flex-start;
+    }
+
+    .estado-tarea button {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+
+    .encabezado {
+        align-items: flex-start;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .formulario-tarea {
+        padding: 18px;
+    }
+}

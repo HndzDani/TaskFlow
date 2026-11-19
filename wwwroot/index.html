@@ -1,0 +1,456 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Gestión de tareas</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <!-- =========================================
+             SIDEBAR Y NAVEGACIÓN
+        ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>TaskFlow</h2>
+            </div>
+
+            <nav class="menu">
+
+                <a href="#vista-panel">
+                    Panel
+                </a>
+
+                <a href="#vista-tareas">
+                    Mis tareas
+                </a>
+
+                <a href="#vista-calendario">
+                    Calendario
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- =========================================
+             CONTENIDO PRINCIPAL
+        ========================================== -->
+
+        <main class="contenido">
+
+
+            <!-- =====================================
+                 1. PANEL PRINCIPAL
+            ====================================== -->
+
+            <section id="vista-panel" class="vista">
+
+                <header class="encabezado">
+
+                    <div>
+                        <h1>Panel</h1>
+
+                        <p class="subtitulo">
+                            Bienvenido a TaskFlow
+                        </p>
+                    </div>
+
+                    <a href="#vista-nueva-tarea" class="btn-nueva-tarea">
+                        + Nueva tarea
+                    </a>
+
+                </header>
+
+
+                <!-- ESTADÍSTICAS -->
+
+                <section class="estadisticas">
+
+                    <div class="tarjeta">
+                        <h3>Pendientes</h3>
+                        <p class="vistaPendientes"></p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <h3>En curso</h3>
+                        <p class="vistaEnCurso"></p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <h3>Completadas</h3>
+                        <p class="vistaCompletadas"></p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <h3>Vencidas</h3>
+                        <p class="tareasVencidas"></p>
+                    </div>
+
+                </section>
+
+
+                <!-- PROGRESO GENERAL -->
+
+                <section class="progreso">
+
+                    <div class="progreso-info">
+
+                        <h2>Progreso general</h2>
+
+                        <p class="progreso-tareas">
+                            0 de 0 tareas completadas · 0%
+                        </p>
+
+                    </div>
+
+                    <div class="barra-progreso">
+
+                        <div class="progreso-completado"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PRÓXIMAS TAREAS -->
+
+                <section class="proximas-tareas">
+
+                    <h2>Próximas tareas</h2>
+
+                    <!-- Tareas generadas dinámicamente por JavaScript -->
+
+                    <ul class="lista-tareas"></ul>
+
+                </section>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 2. MIS TAREAS
+            ====================================== -->
+
+            <section id="vista-tareas" class="vista">
+
+                <header class="encabezado">
+
+                    <div>
+
+                        <h1>Mis tareas</h1>
+
+                        <p class="tareas-totales"></p>
+
+                    </div>
+
+                    <a href="#vista-nueva-tarea" class="btn-nueva-tarea">
+                        + Nueva tarea
+                    </a>
+
+                </header>
+
+
+                <!-- FILTROS POR ESTADO -->
+
+                <div class="filtros">
+
+                    <button type="button" class="filtro-activo"></button>
+
+                    <button type="button" class="tareas-pendientes"></button>
+
+                    <button type="button" class="tareas-en-progreso"></button>
+
+                    <button type="button" class="tareas-completadas"></button>
+
+                </div>
+
+
+                <!-- LISTA DINÁMICA DE TAREAS -->
+
+                <div class="lista-mis-tareas"></div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 3. CALENDARIO
+            ====================================== -->
+
+            <section id="vista-calendario" class="vista">
+
+                <header class="encabezado">
+
+                    <div>
+
+                        <h1>Calendario</h1>
+
+                        <p>
+                            Fechas de vencimiento de tus tareas
+                        </p>
+
+                    </div>
+
+                    <a href="#vista-nueva-tarea" class="btn-nueva-tarea">
+                        + Nueva tarea
+                    </a>
+
+                </header>
+
+
+                <!-- CONTENEDOR DEL CALENDARIO -->
+
+                <div class="calendario">
+
+
+                    <!-- NAVEGACIÓN ENTRE MESES -->
+
+                    <div class="navegacion-calendario">
+
+                        <button type="button" id="mesAnterior">
+                            ❮
+                        </button>
+
+                        <h2 id="mesAnio"></h2>
+
+                        <button type="button" id="mesSiguiente">
+                            ❯
+                        </button>
+
+                    </div>
+
+
+                    <!-- DÍAS DE LA SEMANA -->
+
+                    <div class="dias-semana">
+
+                        <span>L</span>
+                        <span>M</span>
+                        <span>X</span>
+                        <span>J</span>
+                        <span>V</span>
+                        <span>S</span>
+                        <span>D</span>
+
+                    </div>
+
+
+                    <!-- DÍAS GENERADOS POR JAVASCRIPT -->
+
+                    <div class="dias-mes"></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 4. FORMULARIO DE NUEVA TAREA
+            ====================================== -->
+
+            <section id="vista-nueva-tarea" class="vista">
+
+                <a href="#vista-tareas" class="volver">
+                    ← Volver a Mis tareas
+                </a>
+
+
+                <!-- ENCABEZADO DEL FORMULARIO -->
+
+                <header class="titulo-formulario">
+
+                    <h1>Nueva tarea</h1>
+
+                    <p>
+                        Escribe lo que necesitas hacer y cuándo.
+                    </p>
+
+                </header>
+
+
+                <!-- FORMULARIO -->
+
+                <form class="formulario-tarea">
+
+
+                    <!-- TÍTULO -->
+
+                    <div class="campo">
+
+                        <label for="titulo">
+                            Título
+                        </label>
+
+                        <input type="text"
+                               id="titulo"
+                               name="titulo"
+                               maxlength="100"
+                               placeholder="Ej. Terminar el informe de ventas"
+                               required>
+
+                    </div>
+
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <div class="campo">
+
+                        <label for="descripcion">
+                            Descripción
+                        </label>
+
+                        <textarea id="descripcion"
+                                  name="descripcion"
+                                  maxlength="300"
+                                  placeholder="Agrega detalles, pasos o enlaces (opcional)"></textarea>
+
+                    </div>
+
+
+                    <!-- PRIORIDAD -->
+
+                    <div class="campo">
+
+                        <label>
+                            Prioridad
+                        </label>
+
+                        <div class="opciones-prioridad">
+
+                            <label>
+
+                                <input type="radio"
+                                       name="prioridad"
+                                       value="Baja">
+
+                                <span>Baja</span>
+
+                            </label>
+
+
+                            <label>
+
+                                <input type="radio"
+                                       name="prioridad"
+                                       value="Media"
+                                       checked>
+
+                                <span>Media</span>
+
+                            </label>
+
+
+                            <label>
+
+                                <input type="radio"
+                                       name="prioridad"
+                                       value="Alta">
+
+                                <span>Alta</span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ESTADO Y FECHA DE VENCIMIENTO -->
+
+                    <div class="campos-dobles">
+
+
+                        <!-- ESTADO -->
+
+                        <div class="campo">
+
+                            <label for="estado">
+                                Estado inicial
+                            </label>
+
+                            <select id="estado" name="estado">
+
+                                <option value="Pendiente">
+                                    Pendiente
+                                </option>
+
+                                <option value="En progreso">
+                                    En progreso
+                                </option>
+
+                                <option value="Completada">
+                                    Completada
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- FECHA -->
+
+                        <div class="campo">
+
+                            <label for="fechaVencimiento">
+                                Fecha de vencimiento
+                            </label>
+
+                            <input type="date"
+                                   id="fechaVencimiento"
+                                   name="fechaVencimiento">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MENSAJES DE VALIDACIÓN -->
+
+                    <div id="errores-validacion"
+                         class="errores-validacion"></div>
+
+
+                    <!-- BOTONES DEL FORMULARIO -->
+
+                    <div class="acciones-formulario">
+
+                        <a href="#vista-tareas" class="btn-cancelar">
+                            Cancelar
+                        </a>
+
+                        <button type="submit" class="btn-crear">
+                            Crear tarea
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
